@@ -13,7 +13,7 @@ clock = pygame.time.Clock()
 
 def run(tutorial):
     level = Level()
-    level.load_level('level1.txt')
+    level.load_level('level.txt')
     level.draw(screen, 0, 0)
 
     heatbar = pygame.sprite.GroupSingle()
@@ -78,7 +78,8 @@ def run(tutorial):
 
 tutorial = True
 while run(tutorial):
-    tutorial = False
+    #tutorial = False
+    pass
 
 # kończeie gry
 pygame.quit()

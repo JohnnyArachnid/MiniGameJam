@@ -53,10 +53,10 @@ class Player:
             self.spriteGroup.sprite = newSprite
 
         next_tile = self.level.level_map[self.y + next_position[1]][self.x + next_position[0]]
-        if(next_tile != '1' and next_tile != '8' and next_tile != '2' and next_tile != '9'):
+        if(next_tile != '0' and next_tile != '1' and next_tile != '2' and next_tile != '3'):
             return
         
-        if(next_tile == '8'):
+        if(next_tile == '3'):
             self.inside_fire = True
         else:
             self.inside_fire = False
@@ -66,7 +66,7 @@ class Player:
         else:
             self.inside_ice = False
 
-        if(next_tile == '9'):
+        if(next_tile == '0'):
             self.finished = True
 
 

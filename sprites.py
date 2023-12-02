@@ -157,3 +157,52 @@ class Exit(AnimatedSprite):
             './Grafiki/Gotowe/Meta3.png',
             './Grafiki/Gotowe/Meta4.png',
         ], rect, 240)
+
+class Santa(Sprite2):
+    def __init__(self, rect):
+        super().__init__('./Grafiki/Gotowe/MikolajNaSniegu.png', rect)
+
+class Elf1(Sprite2):
+    def __init__(self, rect):
+        super().__init__('./Grafiki/Gotowe/ElfnaSniegu1.png', rect)
+
+class Elf2(Sprite2):
+    def __init__(self, rect):
+        super().__init__('./Grafiki/Gotowe/ElfnaSniegu2.png', rect)
+
+class Elf3(Sprite2):
+    def __init__(self, rect):
+        super().__init__('./Grafiki/Gotowe/ElfnaSniegu3.png', rect)
+
+class LDolLewo(Sprite2):
+    def __init__(self, rect):
+        super().__init__('./Grafiki/Gotowe/LDolLewo.png', rect)
+
+class LDolPrawo(Sprite2):
+    def __init__(self, rect):
+        super().__init__('./Grafiki/Gotowe/LDolPrawo1.png', rect)
+
+class LGoraLewo(Sprite2):
+    def __init__(self, rect):
+        super().__init__('./Grafiki/Gotowe/LGoraLewo1.png', rect)
+
+class LGoraPrawo(Sprite2):
+    def __init__(self, rect):
+        super().__init__('./Grafiki/Gotowe/LGoraPrawo1.png', rect)
+
+class RogDolLewo(Sprite2):
+    def __init__(self, rect):
+        super().__init__('./Grafiki/Gotowe/blokRogDolLewo1.png', rect)
+
+class RogDolPrawo(Sprite2):
+    def __init__(self, rect):
+        super().__init__('./Grafiki/Gotowe/blokRogDolPrawo1.png', rect)
+
+class RogGoraLewo(Sprite2):
+    def __init__(self, rect):
+        super().__init__('./Grafiki/Gotowe/blokRogGoraLewo.png', rect)
+
+class RogGoraPrawo(Sprite2):
+    def __init__(self, rect):
+        super().__init__('./Grafiki/Gotowe/blokRogGoraPrawo.png', rect)
+
