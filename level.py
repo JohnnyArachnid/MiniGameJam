@@ -26,15 +26,14 @@ class Level:
                 position = (xStart + x * xUnit, yStart + y * yUnit, xUnit, yUnit)
                 match self.level_map[y][x]:
                     case '0':
-                        pygame.draw.rect(screen, (0, 0, 0), position)
+                        self.all_sprites.add(sprites.Wall(position))
                     case '1':
-                        pygame.draw.rect(screen, (255, 255, 255), position)
+                        self.all_sprites.add(sprites.Path(position))
                     case '2':
-                        pygame.draw.rect(screen, (0, 0, 255), position)
+                        self.all_sprites.add(sprites.Water(position))
                     case '3':
-                        pygame.draw.rect(screen, (255, 0, 0), position)
+                        self.all_sprites.add(sprites.Enemy(position))
+                    
                     case _:
                         print('Nieznany znak w pliku mapy!')
                         exit(1)
-
-        pygame.display.update()
