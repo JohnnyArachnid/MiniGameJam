@@ -39,6 +39,34 @@ class Sprite2(pygame.sprite.Sprite):
         self.width = rect[2]
         self.height = rect[3]
 
+class AnimatedSprite(pygame.sprite.Sprite):
+    def __init__(self, images, rect, fps):
+        super().__init__()
+
+        self.frames = []
+        for img in images:
+            self.frames.append(pygame.image.load(img).convert_alpha())
+
+        self.image = self.frames[0]
+        self.image.set_colorkey(env_vars.COLOR)
+
+        self.rect = self.image.get_rect()
+        self.rect.x = rect[0]
+        self.rect.y = rect[1]
+        self.width = rect[2]
+        self.height = rect[3]
+
+        self.fps = fps
+        self.last_tick = 0
+        self.current_frame = 0
+
+    def update(self):
+        if(pygame.time.get_ticks() - self.last_tick > self.fps):
+            self.last_tick = pygame.time.get_ticks()
+            self.current_frame += 1
+            self.image = self.frames[self.current_frame % len(self.frames)]
+            self.image.set_colorkey(env_vars.COLOR)
+
 # vvv tutaj 
 
 class Path(Sprite2):
@@ -65,9 +93,37 @@ class WallDown(Sprite2):
     def __init__(self, rect):
         super().__init__('./Grafiki/Gotowe/blokRogDol1.png', rect)
 
-class Player(Sprite2):
+
+PLAYER_ANIMATION_SPEED = 90
+class PlayerDown(AnimatedSprite):
     def __init__(self, rect):
-        super().__init__('./Grafiki/Gotowe/graczDefault.png', rect)
+        super().__init__([
+            './Grafiki/Gotowe/graczDefault.png',
+            './Grafiki/Gotowe/graczDol1.png',
+            './Grafiki/Gotowe/graczDol2.png',
+        ], rect, PLAYER_ANIMATION_SPEED)
+
+class PlayerUp(AnimatedSprite):
+    def __init__(self, rect):
+        super().__init__([
+            './Grafiki/Gotowe/graczGora1.png',
+            './Grafiki/Gotowe/graczGora2.png',
+            './Grafiki/Gotowe/graczGora3.png',
+        ], rect, PLAYER_ANIMATION_SPEED)
+
+class PlayerLeft(AnimatedSprite):
+    def __init__(self, rect):
+        super().__init__([
+            './Grafiki/Gotowe/graczLewo1.png',
+            './Grafiki/Gotowe/graczLewo2.png',
+        ], rect, PLAYER_ANIMATION_SPEED)
+
+class PlayerRight(AnimatedSprite):
+    def __init__(self, rect):
+        super().__init__([
+            './Grafiki/Gotowe/graczPrawo1.png',
+            './Grafiki/Gotowe/graczPrawo2.png',
+        ], rect, PLAYER_ANIMATION_SPEED)
 
 class Enemy(Sprite):
     def __init__(self, rect):

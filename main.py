@@ -1,5 +1,6 @@
 import pygame
 import env_vars
+from heatbar import HeatBar
 from level import Level
 
 # pygame init
@@ -39,9 +40,13 @@ while running:
         level.player.move_down()
         pass
 
+    heatbar = pygame.sprite.GroupSingle()
+    heatbar.add(HeatBar())
+
     screen.fill(env_vars.SURFACE_COLOR)
     level.all_sprites.draw(screen)
     level.player.draw(screen)
+    heatbar.draw(screen)
     pygame.display.flip()
     clock.tick(FPS)
 
