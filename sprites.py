@@ -65,9 +65,9 @@ class WallDown(Sprite2):
     def __init__(self, rect):
         super().__init__('./Grafiki/Gotowe/blokRogDol1.png', rect)
 
-class Player(Sprite):
+class Player(Sprite2):
     def __init__(self, rect):
-        super().__init__(GRAY, rect)
+        super().__init__('./Grafiki/Gotowe/graczDefault.png', rect)
 
 class Enemy(Sprite):
     def __init__(self, rect):

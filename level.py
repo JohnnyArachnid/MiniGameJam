@@ -1,6 +1,7 @@
 import pygame
 import env_vars
 import sprites
+from player import Player
 
 SCIANA = '0'
 SCIEZKA = '1'
@@ -19,6 +20,7 @@ class Level:
         self.level_path = None
         self.level_map = None
         self.all_sprites = pygame.sprite.Group()
+        self.player = pygame.sprite.GroupSingle()
 
     def load_level(self, level_name):
         levle_path = level_name
@@ -52,7 +54,9 @@ class Level:
                     case '6':
                         self.all_sprites.add(sprites.WallDown(position))
                     case '7':
-                        self.all_sprites.add(sprites.Player(position))
+                        self.level_map[y][x] = '1'
+                        self.all_sprites.add(sprites.Path(position))
+                        self.player = Player(self.level_map, position, x, y)
                     case '8':
                         self.all_sprites.add(sprites.Enemy(position))
                     case '9':

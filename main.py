@@ -25,9 +25,23 @@ while running:
            and event.key == pygame.K_ESCAPE:
             running = False
 
+    level.player.update()
+    key = pygame.key.get_pressed()
+    if key[pygame.K_LEFT] or key[pygame.K_a]:
+        level.player.move_left()
+    if key[pygame.K_RIGHT] or key[pygame.K_d]:
+        level.player.move_right()
+        pass
+    if key[pygame.K_UP] or key[pygame.K_w]:
+        level.player.move_up()
+        pass
+    if key[pygame.K_DOWN] or key[pygame.K_s]:
+        level.player.move_down()
+        pass
+
     screen.fill(env_vars.SURFACE_COLOR)
-    level.all_sprites.update()
     level.all_sprites.draw(screen)
+    level.player.draw(screen)
     pygame.display.flip()
     clock.tick(FPS)
 
