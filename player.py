@@ -8,9 +8,6 @@ MOVEMENT_TICKS = 60*MOVEMENT_TIME/1000
 class Player:
     def __init__(self, level, position, actualX, actualY):
         self.level = level
-        self.spriteGroup = pygame.sprite.GroupSingle()
-        playerSprite = sprites.Player(position)
-        self.spriteGroup.add(playerSprite)
         self.x = actualX
         self.y = actualY
 
@@ -19,16 +16,60 @@ class Player:
         self.last_move = None
         self.last_tick = 0
 
+        self.inside_fire = False
+        self.inside_ice = False
+        self.finished = False
+
+        self.playerUP = sprites.PlayerUp(position)
+        self.playerDOWN = sprites.PlayerDown(position)
+        self.playerLEFT = sprites.PlayerLeft(position)
+        self.playerRIGHT = sprites.PlayerRight(position)
+
+        self.spriteGroup = pygame.sprite.GroupSingle()
+        self.spriteGroup.add(sprites.PlayerDown(position))
+
     def draw(self, screen):
         self.spriteGroup.draw(screen)
 
     def move(self, next_position):
+        self.spriteGroup.sprite.update()
+
         if(self.during_move):
             return
         
-        if(self.level.level_map[self.y + next_position[1]][self.x + next_position[0]] != '1'):
+        if(self.last_move != next_position):
+            newSprite = None
+            if(next_position[0] == 1):
+                newSprite = self.playerRIGHT
+            elif(next_position[0] == -1):
+                newSprite = self.playerLEFT
+            elif(next_position[1] == 1):
+                newSprite = self.playerDOWN
+            elif(next_position[1] == -1):
+                newSprite = self.playerUP
+
+            newSprite.rect.x = self.spriteGroup.sprite.rect.x
+            newSprite.rect.y = self.spriteGroup.sprite.rect.y
+            self.spriteGroup.sprite = newSprite
+
+        next_tile = self.level.level_map[self.y + next_position[1]][self.x + next_position[0]]
+        if(next_tile != '0' and next_tile != '1' and next_tile != '2' and next_tile != '3'):
             return
         
+        if(next_tile == '3'):
+            self.inside_fire = True
+        else:
+            self.inside_fire = False
+
+        if(next_tile == '2'):
+            self.inside_ice = True
+        else:
+            self.inside_ice = False
+
+        if(next_tile == '0'):
+            self.finished = True
+
+
         self.during_move = True
         self.endtime = pygame.time.get_ticks() + MOVEMENT_TICKS
         self.last_move = next_position
