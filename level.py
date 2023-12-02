@@ -21,6 +21,7 @@ class Level:
         self.y_tiles = 0
         self.level_map = None
         self.all_sprites = pygame.sprite.Group()
+        self.animated_sprites = pygame.sprite.Group()
         self.player = pygame.sprite.GroupSingle()
         self.camera = (0, 0)
         self.spawn = (0, 0)
@@ -47,11 +48,9 @@ class Level:
         for sprite in self.all_sprites:
             sprite.rect.x += x
             sprite.rect.y += y
-
-        """
-        self.player.spriteGroup.sprite.rect.x += x
-        self.player.spriteGroup.sprite.rect.y += y
-        """
+        for sprite in self.animated_sprites:
+            sprite.rect.x += x
+            sprite.rect.y += y
 
     def draw(self, screen, xStart, yStart):
         xUnit = screen.get_width() / env_vars.XTILES
@@ -66,7 +65,7 @@ class Level:
                     case '1':
                         self.all_sprites.add(sprites.Path(position))
                     case '2':
-                        self.all_sprites.add(sprites.Water(position))
+                        self.animated_sprites.add(sprites.Ice(position))
                     case '3':
                         self.all_sprites.add(sprites.WallLeft(position))
                     case '4':
@@ -81,7 +80,7 @@ class Level:
                         self.spawn = (x, y)
                         self.player = Player(self, position, x, y)
                     case '8':
-                        self.all_sprites.add(sprites.Enemy(position))
+                        self.animated_sprites.add(sprites.Ognisko(position))
                     case '9':
                         self.all_sprites.add(sprites.Exit(position))
                     case _:

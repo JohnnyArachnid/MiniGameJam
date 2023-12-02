@@ -129,13 +129,25 @@ class PlayerRight(AnimatedSprite):
             './Grafiki/Gotowe/graczPrawo2.png',
         ], rect, PLAYER_ANIMATION_SPEED)
 
-class Enemy(Sprite):
-    def __init__(self, rect):
-        super().__init__(RED, rect)
 
-class Water(Sprite):
+
+class Ognisko(AnimatedSprite):
     def __init__(self, rect):
-        super().__init__(BLUE, rect)
+        super().__init__([
+            './Grafiki/Gotowe/ogniskoDefault.png',
+            './Grafiki/Gotowe/ognisko3.png',
+            './Grafiki/Gotowe/ognisko1.png',
+            './Grafiki/Gotowe/ognisko4.png',
+        ], rect, 240)
+
+class Ice(AnimatedSprite):
+    def __init__(self, rect):
+        super().__init__([
+            './Grafiki/Gotowe/Lod.png',
+            './Grafiki/Gotowe/Lod1.png',
+            './Grafiki/Gotowe/Lod2.png',
+            './Grafiki/Gotowe/Lod3.png',
+        ], rect, 240)
 
 class Exit(Sprite):
     def __init__(self, rect):

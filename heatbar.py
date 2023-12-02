@@ -18,11 +18,10 @@ class HeatBar(pygame.sprite.Sprite):
         self.pointer.add(Pointer((256, 236)))
 
     def update(self, screen):
-        self.remove_heat(0.5)
         self.pointer.draw(screen)
 
     def add_heat(self, heat):
-        self.internal_heat += heat
+        self.internal_heat = min(self.internal_heat + heat, 390)
         self.pointer.sprite.rect.x = 56 + self.internal_heat
     
     def remove_heat(self, heat):

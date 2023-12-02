@@ -55,19 +55,27 @@ def run(tutorial):
 
             screen.fill(env_vars.SURFACE_COLOR)
 
+            for sprite in level.animated_sprites:
+                sprite.update()
+            
+            level.animated_sprites.draw(screen)
             level.all_sprites.draw(screen)
             level.player.draw(screen)
             heatbar.draw(screen)
+
+            if(level.player.finished):
+                return False
+            elif(level.player.inside_fire):
+                heatbar.sprite.add_heat(1)
+            elif(level.player.inside_ice):
+                heatbar.sprite.remove_heat(1.5)
+            else:
+                heatbar.sprite.remove_heat(0.5)
+
             heatbar.update(screen)
 
-            if heatbar.sprite.internal_heat <= 0 or heatbar.sprite.internal_heat >= 400:
-                return True
-                """
-                heatbar.sprite.internal_heat = 200
-                level.camera = (0,0)
-                level.player = player.Player(level, (level.spawn[0]*32, level.spawn[1]*32, 32, 32), level.spawn[0], level.spawn[1])
-                level.all_sprites.draw(screen)
-                """
+            if heatbar.sprite.internal_heat <= 0:
+                return True # powtarzamy nie kończymy
         else:
             tutorialScreen.draw(screen)
 

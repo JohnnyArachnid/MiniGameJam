@@ -16,6 +16,10 @@ class Player:
         self.last_move = None
         self.last_tick = 0
 
+        self.inside_fire = False
+        self.inside_ice = False
+        self.finished = False
+
         self.playerUP = sprites.PlayerUp(position)
         self.playerDOWN = sprites.PlayerDown(position)
         self.playerLEFT = sprites.PlayerLeft(position)
@@ -33,8 +37,23 @@ class Player:
         if(self.during_move):
             return
         
-        if(self.level.level_map[self.y + next_position[1]][self.x + next_position[0]] != '1'):
+        next_tile = self.level.level_map[self.y + next_position[1]][self.x + next_position[0]]
+        if(next_tile != '1' and next_tile != '8' and next_tile != '2' and next_tile != '9'):
             return
+        
+        if(next_tile == '8'):
+            self.inside_fire = True
+        else:
+            self.inside_fire = False
+
+        if(next_tile == '2'):
+            self.inside_ice = True
+        else:
+            self.inside_ice = False
+
+        if(next_tile == '9'):
+            self.finished = True
+        
         
         if(self.last_move != next_position):
             newSprite = None
