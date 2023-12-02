@@ -2,6 +2,18 @@ import pygame
 import env_vars
 import sprites
 
+SCIANA = '0'
+SCIEZKA = '1'
+WODA = '2'
+SCIANA_LEWO = '3'
+SCIANA_PRAWO = '4'
+SCIANA_GORA = '5'
+SCIANA_DOL = '6'
+
+GRACZ = '7'
+PRZECIWNIK = '8'
+WYJSCIE = '9'
+
 class Level:
     def __init__(self):
         self.level_path = None
@@ -32,8 +44,19 @@ class Level:
                     case '2':
                         self.all_sprites.add(sprites.Water(position))
                     case '3':
+                        self.all_sprites.add(sprites.WallLeft(position))
+                    case '4':
+                        self.all_sprites.add(sprites.WallRight(position))
+                    case '5':
+                        self.all_sprites.add(sprites.WallUp(position))
+                    case '6':
+                        self.all_sprites.add(sprites.WallDown(position))
+                    case '7':
+                        self.all_sprites.add(sprites.Player(position))
+                    case '8':
                         self.all_sprites.add(sprites.Enemy(position))
-                    
+                    case '9':
+                        self.all_sprites.add(sprites.Exit(position))
                     case _:
                         print('Nieznany znak w pliku mapy!')
                         exit(1)
