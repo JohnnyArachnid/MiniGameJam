@@ -1,13 +1,9 @@
-# Simple pygame program
-# Import and initialize the pygame library
-
 import pygame
 
+
+# pygame init
 pygame.init()
-
-
-# Set up the drawing window
-screen = pygame.display.set_mode([500, 500])
+screen = pygame.display.set_mode([512, 288], pygame.FULLSCREEN)
 
 
 # Run until the user asks to quit
