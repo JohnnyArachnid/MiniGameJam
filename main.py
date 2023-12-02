@@ -17,6 +17,9 @@ level = Level()
 level.load_level('level1.txt')
 level.draw(screen, 0, 0)
 
+heatbar = pygame.sprite.GroupSingle()
+heatbar.add(HeatBar())
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -40,13 +43,13 @@ while running:
         level.player.move_down()
         pass
 
-    heatbar = pygame.sprite.GroupSingle()
-    heatbar.add(HeatBar())
-
     screen.fill(env_vars.SURFACE_COLOR)
     level.all_sprites.draw(screen)
     level.player.draw(screen)
     heatbar.draw(screen)
+    heatbar.update(screen)
+    #heatbar.sprite.pointer.update()
+    #heatbar.sprite.pointer.draw(screen)
     pygame.display.flip()
     clock.tick(FPS)
 

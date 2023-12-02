@@ -11,5 +11,37 @@ class HeatBar(pygame.sprite.Sprite):
         self.rect.x = 56
         self.rect.y = 238
 
-    def update(self):
-        pass
+        self.internal_heat = 200
+
+        self.pointer = pygame.sprite.GroupSingle()
+        self.pointer.add(Pointer((256, 236)))
+
+    def update(self, screen):
+        self.remove_heat(0.5)
+        self.pointer.draw(screen)
+
+    def add_heat(self, heat):
+        self.internal_heat += heat
+        self.pointer.sprite.rect.x = 56 + self.internal_heat
+    
+    def remove_heat(self, heat):
+        self.internal_heat -= heat
+
+        if(self.internal_heat < 0):
+            #/exit(0)
+            return
+
+        self.pointer.sprite.rect.x = 56 + self.internal_heat
+
+class Pointer(pygame.sprite.Sprite):
+    WIDTH = 5
+    HEIGHT = 37
+    def __init__(self, position):
+        super().__init__()
+        # surface
+        self.image = pygame.image.load('./Grafiki/Gotowe/Wskaznik.png').convert_alpha()
+        self.image.set_colorkey(env_vars.COLOR)
+
+        self.rect = self.image.get_rect()
+        self.rect.x = position[0]
+        self.rect.y = position[1]
