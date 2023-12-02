@@ -93,6 +93,10 @@ class WallDown(Sprite2):
     def __init__(self, rect):
         super().__init__('./Grafiki/Gotowe/blokRogDol1.png', rect)
 
+class TutorialScreen(Sprite2):
+    def __init__(self, rect):
+        super().__init__('./Grafiki/Gotowe/PoczatekGryCalosc.png', rect)
+
 
 PLAYER_ANIMATION_SPEED = 90
 class PlayerDown(AnimatedSprite):
