@@ -4,7 +4,7 @@ from level import Level
 
 # pygame init
 pygame.init()
-screen = pygame.display.set_mode([512, 288])
+screen = pygame.display.set_mode([env_vars.SCREEN_WIDTH, env_vars.SCREEN_HEIGHT])
 
 clock = pygame.time.Clock()
 FPS = 60
