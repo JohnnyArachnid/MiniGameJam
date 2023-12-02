@@ -4,6 +4,7 @@ import env_vars
 class HeatBar(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
+
         self.image = pygame.transform.scale(pygame.image.load('./Grafiki/Gotowe/pasek_upojenia.png').convert_alpha(), (400, 33))
         self.image.set_colorkey(env_vars.COLOR)
 
@@ -28,7 +29,6 @@ class HeatBar(pygame.sprite.Sprite):
         self.internal_heat -= heat
 
         if(self.internal_heat < 0):
-            #/exit(0)
             return
 
         self.pointer.sprite.rect.x = 56 + self.internal_heat

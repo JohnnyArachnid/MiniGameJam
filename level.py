@@ -23,6 +23,7 @@ class Level:
         self.all_sprites = pygame.sprite.Group()
         self.player = pygame.sprite.GroupSingle()
         self.camera = (0, 0)
+        self.spawn = (0, 0)
 
     def load_level(self, level_name):
         with open(level_name, 'r') as f:
@@ -77,6 +78,7 @@ class Level:
                     case '7':
                         self.level_map[y][x] = '1'
                         self.all_sprites.add(sprites.Path(position))
+                        self.spawn = (x, y)
                         self.player = Player(self, position, x, y)
                     case '8':
                         self.all_sprites.add(sprites.Enemy(position))
