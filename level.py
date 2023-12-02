@@ -82,7 +82,7 @@ class Level:
                     case '8':
                         self.animated_sprites.add(sprites.Ognisko(position))
                     case '9':
-                        self.all_sprites.add(sprites.Exit(position))
+                        self.animated_sprites.add(sprites.Exit(position))
                     case _:
                         print('Nieznany znak w pliku mapy!')
                         exit(1)

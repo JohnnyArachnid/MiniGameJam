@@ -10,13 +10,8 @@ pygame.init()
 screen = pygame.display.set_mode([env_vars.SCREEN_WIDTH, env_vars.SCREEN_HEIGHT])
 
 clock = pygame.time.Clock()
-FPS = 60
-
 
 def run(tutorial):
-    # Run until the user asks to quit
-    running = True
-
     level = Level()
     level.load_level('level1.txt')
     level.draw(screen, 0, 0)
@@ -24,11 +19,10 @@ def run(tutorial):
     heatbar = pygame.sprite.GroupSingle()
     heatbar.add(HeatBar())
 
-    #tutorial = True
     tutorialScreen = pygame.sprite.GroupSingle()
     tutorialScreen.add(sprites.TutorialScreen((0, 0, 512, 288)))
 
-    while running:
+    while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return False
@@ -80,7 +74,7 @@ def run(tutorial):
             tutorialScreen.draw(screen)
 
         pygame.display.flip()
-        clock.tick(FPS)
+        clock.tick(env_vars.FPS)
 
 tutorial = True
 while run(tutorial):

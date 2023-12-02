@@ -37,6 +37,21 @@ class Player:
         if(self.during_move):
             return
         
+        if(self.last_move != next_position):
+            newSprite = None
+            if(next_position[0] == 1):
+                newSprite = self.playerRIGHT
+            elif(next_position[0] == -1):
+                newSprite = self.playerLEFT
+            elif(next_position[1] == 1):
+                newSprite = self.playerDOWN
+            elif(next_position[1] == -1):
+                newSprite = self.playerUP
+
+            newSprite.rect.x = self.spriteGroup.sprite.rect.x
+            newSprite.rect.y = self.spriteGroup.sprite.rect.y
+            self.spriteGroup.sprite = newSprite
+
         next_tile = self.level.level_map[self.y + next_position[1]][self.x + next_position[0]]
         if(next_tile != '1' and next_tile != '8' and next_tile != '2' and next_tile != '9'):
             return
@@ -53,22 +68,6 @@ class Player:
 
         if(next_tile == '9'):
             self.finished = True
-        
-        
-        if(self.last_move != next_position):
-            newSprite = None
-            if(next_position[0] == 1):
-                newSprite = self.playerRIGHT
-            elif(next_position[0] == -1):
-                newSprite = self.playerLEFT
-            elif(next_position[1] == 1):
-                newSprite = self.playerDOWN
-            elif(next_position[1] == -1):
-                newSprite = self.playerUP
-
-            newSprite.rect.x = self.spriteGroup.sprite.rect.x
-            newSprite.rect.y = self.spriteGroup.sprite.rect.y
-            self.spriteGroup.sprite = newSprite
 
 
         self.during_move = True

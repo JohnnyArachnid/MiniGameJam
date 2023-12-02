@@ -149,6 +149,11 @@ class Ice(AnimatedSprite):
             './Grafiki/Gotowe/Lod3.png',
         ], rect, 240)
 
-class Exit(Sprite):
+class Exit(AnimatedSprite):
     def __init__(self, rect):
-        super().__init__(GREEN, rect)
+        super().__init__([
+            './Grafiki/Gotowe/Meta1.png',
+            './Grafiki/Gotowe/Meta2.png',
+            './Grafiki/Gotowe/Meta3.png',
+            './Grafiki/Gotowe/Meta4.png',
+        ], rect, 240)
